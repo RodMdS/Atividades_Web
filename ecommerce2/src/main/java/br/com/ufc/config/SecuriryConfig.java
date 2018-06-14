@@ -22,21 +22,24 @@ public class SecuriryConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
 		
-		.antMatchers("/beautymakeup").permitAll() // Permito todo mundo acessar /inicio
-		.antMatchers("/product/**").permitAll() // ALTERAR DEPOIS DOS TESTES
-		.antMatchers("/person/**").permitAll()
-		//.antMatchers("/person/insertPerson").hasRole("USER") //Somente pessoa com papel "USER" acessa /pessoa/formulario
-		//.antMatchers("/person/add").hasAnyRole("USER","ADMIN") // Pessoa com papel "USER" ou "ADMIN" acessa /pessoa/salvar
-		//.antMatchers("/person/list").hasRole("ADMIN") // /pessoa/listar todo mundo pode acessar
+		.antMatchers("/beautymakeup").permitAll()
+		.antMatchers("/erro").permitAll()
+		.antMatchers("/product/list").permitAll()
+		.antMatchers("/person/insertPerson").permitAll()
+		.antMatchers("/person/add").hasAnyRole("USER","ADMIN")
+		.antMatchers("/person/list").hasRole("ADMIN")
+		.antMatchers("/person/remove").hasRole("ADMIN")
+		.antMatchers("/product/insertProduct").hasRole("ADMIN")
+		.antMatchers("/product/add").hasRole("ADMIN")
+		.antMatchers("/product/remove").hasRole("ADMIN")
 		
-		.anyRequest().authenticated() // o resto precisa está autenticado
+		.anyRequest().authenticated() // only authenticated
 		
 		.and()
 		.formLogin()
 		.loginPage("/person/login") // Esse é o controller que chama nosso formulario
 		.permitAll() //permitir acesso para essa url "entrar"
 		
-		//.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 		.and()
 		.logout()
 		.logoutSuccessUrl("/person/login?logout") // logout sucesso

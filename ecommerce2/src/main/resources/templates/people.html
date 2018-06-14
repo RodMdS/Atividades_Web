@@ -16,17 +16,16 @@
       <th scope="col">Data de Nascimento</th>
       <th scope="col">Endereço</th>
       <th scope="col">Usuário</th>
-      <th scope="col">Senha</th>
     </tr>
   </thead>
   <tbody>
     <tr th:each="person : ${allPeople}">
-      <td th:text="${person.id}"></td>
-      <td th:text="${person.name}"></td>
+      <td th:text = "${person.id}"></td>
+      <td th:text = "${person.name}"></td>
       <td th:text = "${person.cpf}"></td>
-      <td th:text="${person.birthday}"></td>
-      <td th:text="${person.address}"></td>
-      <td th:text="${person.login}"></td>
+      <td th:text = "${person.birthday}"></td>
+      <td th:text = "${person.address}"></td>
+      <td th:text = "${person.login}"></td>
        
       <td> <a th:href="@{/person/{id}(id = ${person.id})}">
       	<button type="button" class="btn btn-primary"> Atualizar </button> </a> </td>

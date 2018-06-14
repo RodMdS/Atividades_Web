@@ -23,20 +23,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class Person implements UserDetails {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	private String name;
 	private String cpf;
-	
 	private Date birthday;
-	
 	private String address;
 	private String login;
 	private String password;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable( 
-	        name = "pessoas_roles", 
+	        name = "person_role", 
 	        joinColumns = @JoinColumn(
 	          name = "person_id", referencedColumnName = "id"), 
 	        inverseJoinColumns = @JoinColumn(
