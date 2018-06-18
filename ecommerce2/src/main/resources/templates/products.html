@@ -11,7 +11,7 @@
 	<div class="row" id="row">
 	    <section class="3u" id="product" th:each="product : ${allProducts}">
 	        <a class="image full">
-	        	<img th:src="@{'' + ${product.address}}" th:alt="${product.name}"></img>
+	        	<img width="400px" th:src="@{'' + ${product.address}}" th:alt="${product.name}"></img>
 	        </a>
 	        <p id="description" th:text="${product.name}"></p>
 	        <p id="price" th:text="${'Por: R$ ' + product.price}"></p>
