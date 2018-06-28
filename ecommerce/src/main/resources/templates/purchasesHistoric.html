@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Carrinho de compras</title>
+<link rel="stylesheet" 
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div class="table-responsive">
+	<table class="table">
+	  <thead class="thead-light">
+	    <tr>
+	      <th scope="col">Id_compra</th>
+	      <th scope="col">Usuário</th>
+	      <th scope="col">Produto</th>
+	      <th scope="col">Quantidade</th>
+	      <th scope="col">Valor</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr th:each="buyHistory : ${allBuys}">
+	      <th scope="row" th:text="${buyHistory.id}"></th>
+	      <td th:text="${buyHistory.person}"></td>
+	      <td th:text="${buyHistory.product}"></td>
+	      <td th:text="${buyHistory.quantity}"></td>
+	      <td th:text="${buyHistory.value}"></td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>
+
+<a href="/">Voltar a página principal</a>
+
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Beauty MakeUp</title>
+<link rel="stylesheet" 
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/myStyle.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<h1> Bem vindo a sua loja de maquiagem favorita!!! </h1>
+	
+		<a sec:authorize="hasRole('ADMIN')" 
+			href="/product/insertProduct"> Cadastrar produto </a>
+		<br/>
+		
+		<a sec:authorize="hasRole('USER')" 
+			href="/shoppingcart/visualize">Carrinho de compras</a>
+		<br />
+		
+		<a sec:authorize="hasRole('USER')" 
+			href="/shoppingcart/purchaseshistoric">Histórico de compras</a>
+		<br />
+		
+		<a sec:authorize="!isAuthenticated()" 
+			href="/person/login"> Login </a>
+		<br/>
+		
+		<a sec:authorize="isAuthenticated()" 
+			href="/person/logout"> Logout </a>
+	</div>
+
+	<div class="container">
+		<div class="row" id="row">
+			<section class="3u" id="product" th:each="product : ${allProducts}">
+				<a class="image full"> <img width="150px"
+					th:src="@{'' + ${product.address}}" th:alt="${product.name}"></img>
+				</a>
+				<p id="description" th:text="${product.name}"></p>
+				<p id="price" th:text="${'Por: R$ ' + product.price}"></p>
+				<a sec:authorize="hasRole('USER')" th:href="@{/shoppingcart/addProduct/{id}(id = ${product.id})}">
+      				<button type="button" class="btn btn-primary"> 
+      					Comprar 
+      				</button>
+      			</a>
+      			<br/><br />
+      			<a sec:authorize="hasRole('ADMIN')" 
+      				th:href="@{/product/{id}(id = ${product.id})}">
+      				<button type="button" class="btn btn-primary"> 
+      					<span class="glyphicon glyphicon-pencil"></span>
+      				</button>
+      			</a>
+      			<a sec:authorize="hasRole('ADMIN')" 
+      				th:href="@{/product/remove/{id}(id = ${product.id})}">
+      				<button type="button" class="btn btn-danger"> 
+      					<span class="glyphicon glyphicon-remove"></span>
+      				</button>
+      			</a>
+			</section>
+		</div>
+	</div>
+
+<!-- <table sec:authorize="hasRole('ADMIN')" class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Quantidade</th>
+      <th scope="col">Imagem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="product : ${allProducts}">
+      <td th:text="${product.id}"></td>
+      <td th:text="${product.name}"></td>
+      <td th:text = "${product.price}"></td>
+      <td th:text="${product.quantity}"></td>
+      <td><img th:width="30px" th:src="@{'' + ${product.address}}" th:alt="${product.name}"></img></td>
+      
+      <td> <a th:href="@{/product/{id}(id = ${product.id})}">
+      	<button type="button" class="btn btn-primary"> Atualizar </button> </a> </td>
+      <td> <a th:href="@{/product/remove/{id}(id = ${product.id})}">
+      	<button type="button" class="btn btn-danger"> Excluir </button> </a> </td>
+    </tr>
+  </tbody>
+</table> -->
+
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

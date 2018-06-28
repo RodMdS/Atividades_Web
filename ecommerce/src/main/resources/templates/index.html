@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Beauty MakeUp</title>
+</head>
+<body>
+	<h1> Bem vindo a sua loja de maquiagem favorita!!! </h1>
+	
+	<a href="/person/insertPerson"> Cadastrar pessoa </a>
+	
+	<br></br>
+	
+	<a sec:authorize="hasRole('ADMIN')" href="/product/insertProduct"> Cadastrar produto </a>
+	
+	<br></br>
+	
+	<a sec:authorize="hasRole('USER')" href="/product/list"> Ver produtos </a>
+	
+	<br></br>
+	
+	<a href="/person/login"> Login </a>
+	
+	<br></br>
+	
+	<a href="/person/logout"> Logout </a>
+</body>
+</html>

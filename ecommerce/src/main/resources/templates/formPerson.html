@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Beauty MakeUp</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+</head>
+<body>
+
+<h1> Cadastre-se abaixo </h1>
+
+<form method="POST" action="/person/add" th:object="${person}">
+  <input type="hidden" th:field="*{id}"></input>
+  
+  <div class="form-group">
+    <label>Nome: </label>
+    <input type="text" class="form-control" th:field="*{name}"></input>
+  </div>
+  
+  <div class="form-group">
+    <label>CPF: </label>
+    <input type="text" class="form-control" th:field="*{cpf}"></input>
+  </div>
+  
+   <div class="form-group">
+    <label>Endereço: </label>
+    <input type="text" class="form-control" th:field="*{address}"></input>
+  </div>
+  
+  <div class="form-group">
+    <label>Login: </label>
+    <input type="text" class="form-control" th:field="*{login}"></input>
+  </div>
+  
+  <div class="form-group">
+    <label>Senha: </label>
+    <input type="password" class="form-control" th:field="*{password}"></input>
+  </div>
+  
+  <div class="form-group">
+  	<label>Data de nascimento: </label>
+  	<input type="date" class="form-control" th:field="*{birthday}"></input>
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script src="/js/bootstrap.min.js">  </script>
+</body>
+</html>
